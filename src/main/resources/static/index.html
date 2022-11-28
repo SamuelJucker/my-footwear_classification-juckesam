@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Image Classification</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="script.js" async></script>
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <h1>Image Classification</h1>
+        <p>DLJ Demonstration by mosa</p>
+
+        <form>
+            <div class="form-group">
+                <label for="exampleFormControlFile1">Bitte Bild hochladen (jpeg, png)</label>
+                <input type="file" accept="image/png, image/jpeg" class="form-control-file" id="image" name="image"
+                    onchange="checkFiles(this.files);">
+            </div>
+        </form>
+
+        <div id="answerPart" style="visibility: hidden;">
+            <p><b>Answer:</b>
+            <div id="answer"></div>
+            </p>
+
+            <p id="previewPart"><b>Analyzed Image:</b>
+            <p><img id="preview" width="300" src="#" alt="preview" /></p>
+            </p>
+        </div>
+
+        <div>
+            <p>Links:<br>
+                <a href="https://github.com/onnx/models/tree/master/vision/classification/efficientnet-lite4">EfficientNet-Lite4
+                    Repository</a><br>
+                <a href="https://onnx.ai/">ONNX Website</a>
+            </p>
+        </diV>
+    </div>
+
+
+</body>
+
+</html>
