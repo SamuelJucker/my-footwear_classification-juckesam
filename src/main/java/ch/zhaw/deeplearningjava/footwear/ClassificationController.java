@@ -1,7 +1,5 @@
 package ch.zhaw.deeplearningjava.footwear;
 
-import org.springframework.http.MediaType;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,7 +20,7 @@ public class ClassificationController {
     @PostMapping(path = "/analyze")
     public String predict(@RequestParam("image") MultipartFile image) throws Exception {
         System.out.println(image);
-        return inference.predict(image.getBytes());
+        return inference.predict(image.getBytes()).toJson();
     }
 
 }

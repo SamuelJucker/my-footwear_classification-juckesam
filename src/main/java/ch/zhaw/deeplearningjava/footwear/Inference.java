@@ -44,12 +44,12 @@ public class Inference {
         }
     }
 
-    public String predict(byte[] image) throws ModelException, TranslateException, IOException {
+    public Classifications predict(byte[] image) throws ModelException, TranslateException, IOException {
         InputStream is = new ByteArrayInputStream(image);
         BufferedImage bi = ImageIO.read(is);
         Image img = ImageFactory.getInstance().fromImage(bi);
 
         Classifications predictResult = this.predictor.predict(img);
-        return predictResult.toJson();
+        return predictResult;
     }
 }
