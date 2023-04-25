@@ -18,21 +18,6 @@
 	<dependencies>
 
 		<dependency>
-			<groupId>ai.djl.pytorch</groupId>
-			<artifactId>pytorch-model-zoo</artifactId>
-			<version>0.19.0</version>
-		</dependency>
-		<dependency>
-			<groupId>ai.djl</groupId>
-			<artifactId>model-zoo</artifactId>
-			<version>0.19.0</version>
-		</dependency>
-		<dependency>
-			<groupId>ai.djl</groupId>
-			<artifactId>basicdataset</artifactId>
-			<version>0.19.0</version>
-		</dependency>
-		<dependency>
 			<groupId>ai.djl</groupId>
 			<artifactId>api</artifactId>
 			<version>0.19.0</version>
