@@ -71,34 +71,33 @@ public final class Training {
         // setting training parameters (ie hyperparameters)
         TrainingConfig config = setupTrainingConfig(loss);
 
-        try (
-                Model model = Models.getModel(); // empty model instance to hold patterns
-                Trainer trainer = model.newTrainer(config)) {
-            // metrics collect and report key performance indicators, like accuracy
-            trainer.setMetrics(new Metrics());
+        Model model = Models.getModel(); // empty model instance to hold patterns
+        Trainer trainer = model.newTrainer(config);
+        // metrics collect and report key performance indicators, like accuracy
+        trainer.setMetrics(new Metrics());
 
-            Shape inputShape = new Shape(1, 3, Models.IMAGE_HEIGHT, Models.IMAGE_HEIGHT);
+        Shape inputShape = new Shape(1, 3, Models.IMAGE_HEIGHT, Models.IMAGE_HEIGHT);
 
-            // initialize trainer with proper input shape
-            trainer.initialize(inputShape);
+        // initialize trainer with proper input shape
+        trainer.initialize(inputShape);
 
-            // find the patterns in data
-            EasyTrain.fit(trainer, EPOCHS, datasets[0], datasets[1]);
+        // find the patterns in data
+        EasyTrain.fit(trainer, EPOCHS, datasets[0], datasets[1]);
 
-            // set model properties
-            TrainingResult result = trainer.getTrainingResult();
-            model.setProperty("Epoch", String.valueOf(EPOCHS));
-            model.setProperty(
-                    "Accuracy", String.format("%.5f", result.getValidateEvaluation("Accuracy")));
-            model.setProperty("Loss", String.format("%.5f", result.getValidateLoss()));
+        // set model properties
+        TrainingResult result = trainer.getTrainingResult();
+        model.setProperty("Epoch", String.valueOf(EPOCHS));
+        model.setProperty(
+                "Accuracy", String.format("%.5f", result.getValidateEvaluation("Accuracy")));
+        model.setProperty("Loss", String.format("%.5f", result.getValidateLoss()));
 
-            // save the model after done training for inference later
-            // model saved as shoeclassifier-0000.params
-            model.save(modelDir, Models.MODEL_NAME);
+        // save the model after done training for inference later
+        // model saved as shoeclassifier-0000.params
+        model.save(modelDir, Models.MODEL_NAME);
 
-            // save labels into model directory
-            Models.saveSynset(modelDir, dataset.getSynset());
-        }
+        // save labels into model directory
+        Models.saveSynset(modelDir, dataset.getSynset());
+
     }
 
     private static ImageFolder initDataset(String datasetRoot)
