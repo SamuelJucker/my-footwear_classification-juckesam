@@ -2,9 +2,22 @@ FROM openjdk:17-jdk-slim
 
 # Copy Files
 WORKDIR /usr/src/app
-COPY . .
 
+COPY mvnw mvnw.cmd ./
+COPY .mvn .mvn/
+COPY pom.xml ./
+
+# RUN ./mvnw dependency:go-offline
 # Install
+
+RUN chmod +x mvnw
+
+# RUN ./mvnw -Dmaven.test.skip=true package
+# Download dependencies
+# Download dependencies using Maven Wrapper
+RUN ./mvnw dependency:go-offline
+
+# Build the application without running tests
 RUN ./mvnw -Dmaven.test.skip=true package
 
 # Docker Run Command
