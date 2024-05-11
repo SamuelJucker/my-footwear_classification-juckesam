@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk-slim
+FROM openjdk:21-jdk-slim
 
 # Copy Files
 WORKDIR /usr/src/app
@@ -6,7 +6,7 @@ WORKDIR /usr/src/app
 COPY mvnw mvnw.cmd ./
 COPY .mvn .mvn/
 COPY pom.xml ./
-
+COPY . .
 # RUN ./mvnw dependency:go-offline
 # Install
 
