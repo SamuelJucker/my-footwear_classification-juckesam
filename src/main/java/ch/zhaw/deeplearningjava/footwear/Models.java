@@ -27,14 +27,16 @@ import java.util.List;
 public final class Models {
 
     // the number of classification labels: boots, sandals, shoes, slippers
-    public static final int NUM_OF_OUTPUT = 4;
+    // public static final int NUM_OF_OUTPUT = 4;
+    public static final int NUM_OF_OUTPUT = 196;
+
 
     // the height and width for pre-processing of the image
     public static final int IMAGE_HEIGHT = 100;
     public static final int IMAGE_WIDTH = 100;
 
     // the name of the model
-    public static final String MODEL_NAME = "shoeclassifier";
+    public static final String MODEL_NAME = "carclassy";
 
     private Models() {}
 
@@ -60,6 +62,79 @@ public final class Models {
         Path synsetFile = modelDir.resolve("synset.txt");
         try (Writer writer = Files.newBufferedWriter(synsetFile)) {
             writer.write(String.join("\n", synset));
+        } catch (IOException e) {
+            System.err.println("Failed to save synset to " + synsetFile);
+            throw e; // rethrow to allow higher-level handlers to deal with it
         }
     }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+// package ch.zhaw.deeplearningjava.footwear;
+
+// import ai.djl.Model;
+// import ai.djl.inference.Predictor;
+// import ai.djl.modality.cv.Image;
+// import ai.djl.translate.Translator;
+// import ai.djl.translate.TranslatorContext;
+
+// import java.nio.file.Path;
+// import java.nio.file.Paths;
+// import java.util.List;
+
+// public class FootwearClassifier {
+//     private Model model;
+
+//     public FootwearClassifier() {
+//         this.model = Models.getModel();
+//     }
+
+//     public void trainModel(List<Path> imagePaths) {
+//         // Assuming you have a method to train your model
+//         for (Path imagePath : imagePaths) {
+//             Image img = ImagePreprocessing.preprocessImage(imagePath);
+//             // Train your model with the preprocessed image
+//             // model.fit(img, label); // Pseudocode
+//         }
+//     }
+
+//     public String predict(Path imagePath) {
+//         Image img = ImagePreprocessing.preprocessImage(imagePath);
+//         try (Predictor<Image, String> predictor = model.newPredictor(getTranslator())) {
+//             return predictor.predict(img);
+//         }
+//     }
+
+//     private Translator<Image, String> getTranslator() {
+//         return new Translator<>() {
+//             @Override
+//             public Image processInput(TranslatorContext ctx, Image input) {
+//                 return input; // Already preprocessed
+//             }
+
+//             @Override
+//             public String processOutput(TranslatorContext ctx, ai.djl.ndarray.NDList list) {
+//                 // Process and return the prediction
+//                 return list.singletonOrThrow().toString(); // Pseudocode
+//             }
+//         };
+//     }
+
+//     public static void main(String[] args) {
+//         FootwearClassifier classifier = new FootwearClassifier();
+//         Path testImagePath = Paths.get("path/to/test/image.jpg");
+//         String prediction = classifier.predict(testImagePath);
+//         System.out.println("Predicted class: " + prediction);
+//     }
+// }
