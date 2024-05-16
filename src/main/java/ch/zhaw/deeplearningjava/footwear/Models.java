@@ -28,7 +28,7 @@ public final class Models {
 
     // the number of classification labels: boots, sandals, shoes, slippers
     // public static final int NUM_OF_OUTPUT = 4;
-    public static final int NUM_OF_OUTPUT = 196;
+    public static final int NUM_OF_OUTPUT = 50;
 
 
     // the height and width for pre-processing of the image
